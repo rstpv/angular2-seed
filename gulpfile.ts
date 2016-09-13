@@ -20,6 +20,7 @@ gulp.task('build.dev', (done: any) =>
               'build.html_css',
               'build.js.dev',
               'build.index.dev',
+              'build.vulcanize',
               done));
 
 // --------------
@@ -36,7 +37,8 @@ gulp.task('build.e2e', (done: any) =>
               'tslint',
               'build.assets.dev',
               'build.js.e2e',
-              'build.index.dev',
+              'build.index.dev',              
+              'build.vulcanize',
               done));
 
 // --------------
@@ -53,6 +55,7 @@ gulp.task('build.prod', (done: any) =>
               'build.bundles.app',
               'minify.bundles',
               'build.index.prod',
+              'build.vulcanize',
               done));
 
 // --------------
@@ -70,6 +73,7 @@ gulp.task('build.prod.exp', (done: any) =>
               'build.bundles.app.exp',
               'minify.bundles',
               'build.index.prod',
+              'build.vulcanize',
               done));
 
 // --------------
@@ -82,6 +86,7 @@ gulp.task('build.test', (done: any) =>
               'build.js.dev',
               'build.js.test',
               'build.index.dev',
+              'build.vulcanize',
               done));
 
 // --------------

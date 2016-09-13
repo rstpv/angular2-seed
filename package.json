@@ -18,7 +18,7 @@
     "e2e.live": "protractor --elementExplorer",
     "gulp": "gulp",
     "karma": "karma",
-    "karma.start": "karma start",
+    "karma.start": "karma start",    
     "postinstall": "typings install && gulp check.versions && npm prune && gulp webdriver",
     "reinstall": "npm cache clean && npm install",
     "serve.coverage": "remap-istanbul -b src/ -i coverage/coverage-final.json -o coverage -t html && npm run gulp -- serve.coverage --color",
@@ -31,7 +31,8 @@
     "e2e.ci": "gulp build.prod --color && gulp build.js.e2e --color && gulp e2e --color",
     "tests.all": "npm test && npm run e2e.ci",
     "webdriver-start": "webdriver-manager start",
-    "webdriver-update": "webdriver-manager update"
+    "webdriver-update": "webdriver-manager update",
+    "preinstall": "bower install"
   },
   "author": "Minko Gechev <mgechev>",
   "license": "MIT",
@@ -112,7 +113,9 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "walk": "^2.3.9",
-    "yargs": "^4.8.0"
+    "yargs": "^4.8.0",
+    "gulp-vulcanize": "~6.1.0",
+    "bower": "^1.7.9"
   },
   "dependencies": {
     "@angular/common": "2.0.0-rc.6",
@@ -128,6 +131,7 @@
     "reflect-metadata": "^0.1.8",
     "rxjs": "5.0.0-beta.11",
     "systemjs": "0.19.27",
-    "zone.js": "0.6.17"
+    "zone.js": "0.6.17",
+    "@vaadin/angular2-polymer": "1.0.0-beta4"
   }
 }

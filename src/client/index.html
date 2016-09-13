@@ -7,6 +7,8 @@
   <title><%= APP_TITLE %></title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="import" href="polymer.html">
   <!-- inject:css -->
   <!-- endinject -->
 </head>
@@ -34,11 +36,26 @@
 
   <% if (ENV === 'dev') { %>
   <script>
-  System.import('<%= BOOTSTRAP_MODULE %>')
-    .catch(function (e) {
-      console.error(e,
-        'Report this error at https://github.com/mgechev/angular2-seed/issues');
+    var appStart = function(){
+      System.import('<%= BOOTSTRAP_MODULE %>')
+      .catch(function (e) {
+        console.error(e,
+          'Report this error at https://github.com/mgechev/angular2-seed/issues');
+      });
+    }
+    var webComponentsSupported = ('registerElement' in document
+    && 'import' in document.createElement('link')
+    && 'content' in document.createElement('template'));
+
+  if(webComponentsSupported){
+    appStart();
+  }else{
+    //TODO:load webcomponents.js
+    document.addEventListener('WebComponentsReady', function() {
+      appStart();
     });
+  }
+  
   </script>
   <% } %>
 
