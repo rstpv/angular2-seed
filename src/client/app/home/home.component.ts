@@ -14,6 +14,10 @@ import { NameListService } from '../shared/index';
 export class HomeComponent implements OnInit {
 
   newName: string = '';
+  someobj:any = {
+    "test" : "test",
+    "issome" : false
+  };
   errorMessage: string;
   names: any[] = [];
 

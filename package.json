@@ -18,7 +18,7 @@
     "e2e.live": "protractor --elementExplorer",
     "gulp": "gulp",
     "karma": "karma",
-    "karma.start": "karma start",    
+    "karma.start": "karma start",
     "postinstall": "typings install && gulp check.versions && npm prune && gulp webdriver",
     "reinstall": "npm cache clean && npm install",
     "serve.coverage": "remap-istanbul -b src/ -i coverage/coverage-final.json -o coverage -t html && npm run gulp -- serve.coverage --color",
@@ -126,12 +126,13 @@
     "@angular/platform-browser": "2.0.0",
     "@angular/platform-browser-dynamic": "2.0.0",
     "@angular/router": "3.0.0",
+    "@vaadin/angular2-polymer": "1.0.0-beta4",
     "core-js": "^2.4.0",
     "es-module-loader": "^1.0.0",
     "reflect-metadata": "^0.1.8",
     "rxjs": "5.0.0-beta.12",
     "systemjs": "0.19.27",
-    "zone.js": "0.6.21",
-    "@vaadin/angular2-polymer": "1.0.0-beta4"
+    "webcomponentsjs": "^1.0.2",
+    "zone.js": "0.6.21"
   }
 }

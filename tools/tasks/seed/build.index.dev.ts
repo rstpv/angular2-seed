@@ -16,6 +16,7 @@ export = () => {
   return gulp.src(join(Config.APP_SRC, 'index.html'))
     .pipe(inject('shims'))
     .pipe(inject('libs'))
+    .pipe(injecPolymerBundles())
     .pipe(inject())
     .pipe(plugins.template(templateLocals()))
     .pipe(gulp.dest(Config.APP_DEST));
@@ -68,4 +69,17 @@ function transformPath() {
     arguments[0] = join(Config.APP_BASE, filepath) + `?${Date.now()}`;
     return slash(plugins.inject.transform.apply(plugins.inject.transform, arguments));
   };
+}
+
+function injecPolymerBundles() {
+  let files: string[] = [];
+  for(let file of Config.VULCANIZE_SOURCES){
+    files.push(join(Config.POLYMER_BUNDLES_DEST, file.replace(/.*[\\\/]+([\w\._-]+\.html)/,'$1')))
+  }
+  plugins.util.log("AQUI");
+  plugins.util.log(files);
+  return plugins.inject(gulp.src(files, { read: false }), {
+        files,
+        transform: transformPath()
+  });
 }

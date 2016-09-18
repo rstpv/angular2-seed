@@ -14,6 +14,10 @@ export class ProjectConfig extends SeedConfig {
      `src/static/polymer.html`
   ];
 
+  USING_VAADIN_ANGULAR_2_POLYMER = false;
+
+  POLYMER_BUNDLES_DEST = this.APP_DEST + '/assets';
+
   constructor() {
     super();
     // this.APP_TITLE = 'Put name of your app here';
@@ -24,14 +28,13 @@ export class ProjectConfig extends SeedConfig {
     // Add `NPM` third-party libraries to be injected/bundled.
     this.NPM_DEPENDENCIES = [
       ...this.NPM_DEPENDENCIES,
-      // {src: 'jquery/dist/jquery.min.js', inject: 'libs'},
+      {src: 'webcomponentsjs/lite.js', inject: 'libs'},
       // {src: 'lodash/lodash.min.js', inject: 'libs'},
     ];
 
     // Add `local` third-party libraries to be injected/bundled.
     this.APP_ASSETS = [
       ...this.APP_ASSETS,
-      {src: `src/static/bower/webcomponentsjs/webcomponents-lite.js`, inject:'libs', vendor: true}
       // {src: `${this.APP_SRC}/your-path-to-lib/libs/jquery-ui.js`, inject: true, vendor: false}
       // {src: `${this.CSS_SRC}/path-to-lib/test-lib.css`, inject: true, vendor: false},
     ];
@@ -45,6 +48,7 @@ export class ProjectConfig extends SeedConfig {
             main: 'index.js',
             defaultExtension : 'js'
     };
+    this.PLUGIN_CONFIGS['browser-sync'].server.routes[`${this.APP_BASE}src/static`] = 'src/static';
 
     this.mergeObject(this.PLUGIN_CONFIGS, {
       'gulp-vulcanize' : {

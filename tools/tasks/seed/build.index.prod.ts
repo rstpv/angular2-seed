@@ -16,6 +16,7 @@ export = () => {
   return gulp.src(join(Config.APP_SRC, 'index.html'))
     .pipe(injectJs())
     .pipe(injectCss())
+    .pipe(injecPolymerBundles())
     .pipe(plugins.template(templateLocals()))
     .pipe(gulp.dest(Config.APP_DEST));
 };
@@ -46,6 +47,17 @@ function injectCss() {
 }
 
 /**
+ * Injects the bundled CSS files for the production environment.
+ */
+function injecPolymerBundles() {
+  let files: string[] = [];
+  for(let file of Config.VULCANIZE_SOURCES){
+    files.push(join(Config.POLYMER_BUNDLES_DEST, file.replace(/.*[\\\/]+([\w\._-]+\.html)/,'$1')))
+  }
+  return inject(...files);
+}
+
+/**
  * Transform the path of a dependency to its location within the `dist` directory according to the applications
  * environment.
  */
@@ -58,7 +70,20 @@ function transformPath() {
     } else {
       slice_after = 3;
     }
-    arguments[0] = Config.APP_BASE + path.slice(slice_after, path.length).join(sep) + `?${Date.now()}`;
+    arguments[0] = Config.APP_BASE + path.slice(slice_after, path.length).join('/') + `?${Date.now()}`;
+      if (path[path.length - 1] === Config.JS_PROD_APP_BUNDLE && Config.USING_VAADIN_ANGULAR_2_POLYMER) {
+          let script =  `
+<script>
+document.addEventListener('WebComponentsReady', function() {
+    var a = document.createElement("script");    
+    a.src = "${arguments[0]}";
+    document.body.appendChild(a);
+});
+</script>
+          `;
+          return script;
+        }
+
     return slash(plugins.inject.transform.apply(plugins.inject.transform, arguments));
   };
 }

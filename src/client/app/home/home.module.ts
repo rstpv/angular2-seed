@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from './home.component';
 import { NameListService } from '../shared/name-list/index';
-import {PolymerModule} from './home.polymerimports';
+import { PaperInputDirective,PaperCheckboxDirective } from '../shared/polymer/polymerdirective';
+
+
 
 @NgModule({
   imports: [CommonModule, SharedModule],
-  declarations: [HomeComponent, PolymerModule.forComponent()],
+  declarations: [HomeComponent,PaperInputDirective,PaperCheckboxDirective],
   exports: [HomeComponent],
   providers: [NameListService],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

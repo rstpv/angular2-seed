@@ -4,9 +4,12 @@
 
 <form (submit)="addName()">
   <paper-input [(value)]="newName" name="newName" placeholder="Awesome Computer Scientist"></paper-input>
+  <paper-checkbox [(checked)]="someobj.issome"></paper-checkbox>
+  <input [(ngModel)]="newName" name="newName" placeholder="Awesome Computer Scientist">
   <button type="submit">Add</button>
 </form>
-
+<span>NewName: {{newName}}</span>
+<span>checked: {{someobj.issome}}</span>
 <ul>
   <li *ngFor="let name of names">{{name}}</li>
 </ul>
