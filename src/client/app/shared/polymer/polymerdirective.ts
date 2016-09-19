@@ -4,12 +4,13 @@ import { Directive, ElementRef, Renderer,EventEmitter,Output } from '@angular/co
  * All classes in this file are a concept test to enable two way data binding between a Polymer WebComponent and Angular2.
  *
  * If the component does behave as a form element you can use ngDefaultControl
- * <paper-input ngDefaultControl [(ngModel)]="it.is.some.property.deep"></paper-input>
+ * <paper-input ngDefaultControl [(ngModel)]='it.is.some.property.deep'></paper-input>
  *
  * And even if it isn't and all you want to do is to bind model to a specific value, you can use ngModel and
  * write an DefaultValueAccessor
  *
- * There is a recommended alternative to use Vaadin Angular2 Polymer(which is included in this app): https://github.com/vaadin/angular2-polymer
+ * There is an alternative to use Vaadin Angular2 Polymer
+ * (which is included in this app): https://github.com/vaadin/angular2-polymer
  */
 
 /**
@@ -47,15 +48,16 @@ export class PaperInputDirective  {
 
     constructor(el:ElementRef, renderer: Renderer) {
         PolymerUtility.bindPolymerEvents(el,renderer, [
-                ["value",this.valueChange],
-                ["invalid", this.invalidChange],
-                ["focused",this.focusedChange]]);
+                ['value',this.valueChange],
+                ['invalid', this.invalidChange],
+                ['focused',this.focusedChange]]);
     }
 
 }
 
 /**
- * Provides access to paper-checkbox and paper-radio-button(they implement the same behavior) notified properties(active, checked, disabled, invalid,focused)
+ * Provides access to paper-checkbox and paper-radio-button(they implement the same behavior) 
+ * notified properties(active, checked, disabled, invalid,focused)
  */
 @Directive({
     selector:'paper-checkbox,paper-radio-button'
@@ -69,11 +71,11 @@ export class PaperCheckboxDirective  {
 
     constructor(el:ElementRef, renderer: Renderer) {
         PolymerUtility.bindPolymerEvents(el,renderer, [
-            ["active",this.activeChange],
-            ["checked", this.checkedChange],
-            ["disabled",this.disabledChange],
-            ["invalid", this.invalidChange],
-            ["focused",this.focusedChange]]);
+            ['active',this.activeChange],
+            ['checked', this.checkedChange],
+            ['disabled',this.disabledChange],
+            ['invalid', this.invalidChange],
+            ['focused',this.focusedChange]]);
     }
 
 }
@@ -90,8 +92,8 @@ export class PaperRadioGroupDirective  {
 
     constructor(el:ElementRef, renderer: Renderer) {
         PolymerUtility.bindPolymerEvents(el,renderer, [
-            ["selected",this.selectedChange],
-            ["selectedValues", this.selectedValuesChange]]);
+            ['selected',this.selectedChange],
+            ['selectedValues', this.selectedValuesChange]]);
     }
 
 }

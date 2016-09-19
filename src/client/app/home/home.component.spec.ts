@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -32,7 +32,8 @@ export function main() {
             },
             deps: [MockBackend, BaseRequestOptions]
           },
-        ]
+        ],
+        schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
       });
     });
 

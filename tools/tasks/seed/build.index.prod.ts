@@ -52,7 +52,7 @@ function injectCss() {
 function injecPolymerBundles() {
   let files: string[] = [];
   for(let file of Config.VULCANIZE_SOURCES){
-    files.push(join(Config.POLYMER_BUNDLES_DEST, file.replace(/.*[\\\/]+([\w\._-]+\.html)/,'$1')))
+    files.push(join(Config.POLYMER_BUNDLES_DEST, file.replace(/.*[\\\/]+([\w\._-]+\.html)/,'$1')));
   }
   return inject(...files);
 }
