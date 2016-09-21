@@ -16,11 +16,11 @@ gulp.task('build.dev', (done: any) =>
   runSequence(//'clean.dev',
 //              'tslint',
 //              'css-lint',
+              'build.vulcanize',
               'build.assets.dev',
               'build.html_css',
               'build.js.dev',
-              'build.index.dev',
-              'build.vulcanize',
+              'build.index.dev',              
               done));
 
 // --------------
@@ -34,17 +34,18 @@ gulp.task('build.dev.watch', (done: any) =>
 // Build e2e.
 gulp.task('build.e2e', (done: any) =>
   runSequence('clean.dev',
+              'build.vulcanize',
               'tslint',
               'build.assets.dev',
               'build.js.e2e',
-              'build.index.dev',              
-              'build.vulcanize',
+              'build.index.dev',                           
               done));
 
 // --------------
 // Build prod.
 gulp.task('build.prod', (done: any) =>
   runSequence('clean.prod',
+              'build.vulcanize',
               'tslint',
               'css-lint',
               'build.assets.prod',
@@ -55,13 +56,13 @@ gulp.task('build.prod', (done: any) =>
               'build.bundles.app',
               'minify.bundles',
               'build.index.prod',
-              'build.vulcanize',
               done));
 
 // --------------
 // Build prod.
 gulp.task('build.prod.exp', (done: any) =>
   runSequence('clean.prod',
+              'build.vulcanize',
               'tslint',
               'css-lint',
               'build.assets.prod',
@@ -72,8 +73,7 @@ gulp.task('build.prod.exp', (done: any) =>
               'build.bundles',
               'build.bundles.app.exp',
               'minify.bundles',
-              'build.index.prod',
-              'build.vulcanize',
+              'build.index.prod',              
               done));
 
 // --------------
