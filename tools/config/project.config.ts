@@ -42,12 +42,15 @@ export class ProjectConfig extends SeedConfig {
     /* Add to or override NPM module configurations: */
     // this.mergeObject(this.PLUGIN_CONFIGS['browser-sync'], { ghostMode: false });
 
-    this.SYSTEM_CONFIG_DEV.paths['@vaadin/angular2-polymer'] = `${this.APP_BASE}node_modules/@vaadin/angular2-polymer`;
-    this.SYSTEM_CONFIG_DEV.packageConfigPaths.push(`/node_modules/@vaadin/*/package.json`);
-    this.SYSTEM_BUILDER_CONFIG.packages['@vaadin/angular2-polymer'] = {
-            main: 'index.js',
-            defaultExtension : 'js'
-    };
+    this.addPackageBundles({
+     name: '@vaadin/angular2-polymer',
+     path: `${this.APP_BASE}node_modules/@vaadin/angular2-polymer`,
+     packageMeta : {
+       main: 'index.js',
+       defaultExtension : 'js'
+     }
+   });
+   
     this.PLUGIN_CONFIGS['browser-sync'].server.routes[`${this.APP_BASE}src/static`] = 'src/static';
 
     this.mergeObject(this.PLUGIN_CONFIGS, {
